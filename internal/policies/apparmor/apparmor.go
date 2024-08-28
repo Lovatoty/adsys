@@ -301,7 +301,7 @@ func (m *Manager) applyUserPolicy(ctx context.Context, e entry.Entry, apparmorPa
 	// Reload apparmor machine profiles to ensure that updates to the user policy are applied
 	existingProfiles, err := filesInDir(filepath.Join(m.apparmorDir, "machine"))
 	if errors.Is(err, os.ErrNotExist) {
-		log.Warningf(ctx, gotext.Get("No apparmor machine profiles configured for this machine, skipping reload"))
+		log.Warningf(ctx, gotext.Get("No apparmor machine profiles configured for this machine, skipping reload")) //nolint:govet // printf: this is an i18n formatted const string
 		return nil
 	}
 	if err != nil {
